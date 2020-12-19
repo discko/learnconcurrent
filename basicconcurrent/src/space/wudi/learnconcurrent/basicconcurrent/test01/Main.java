@@ -15,24 +15,27 @@ public class Main {
         }
         void fun1() {
             synchronized (locker){
-                System.out.println(Thread.currentThread().getName()+" in fun1");
+                System.out.println(Thread.currentThread().getName()+" in fun1 started");
                 try {
                     Thread.sleep(2000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                System.out.println(Thread.currentThread().getName()+" in fun1 ended");
             }
         }
         void fun2() {
             synchronized (locker){
-                System.out.println(Thread.currentThread().getName()+" in fun2");
+                System.out.println(Thread.currentThread().getName()+" in fun2 started");
                 try {
                     Thread.sleep(2000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                System.out.println(Thread.currentThread().getName()+" in fun2 ended");
             }
         }
+
     }
 
     public static void main(String[] args) {
