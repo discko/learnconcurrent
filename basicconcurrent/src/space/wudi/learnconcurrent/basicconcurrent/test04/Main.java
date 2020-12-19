@@ -1,10 +1,5 @@
 package space.wudi.learnconcurrent.basicconcurrent.test04;
 
-import sun.misc.Contended;
-
-import java.util.concurrent.atomic.LongAdder;
-import java.util.concurrent.locks.LockSupport;
-
 /**
  * prove the existence of cache line
  */
