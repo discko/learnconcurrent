@@ -7,7 +7,7 @@ package space.wudi.learnconcurrent.basicconcurrent.test01;
  * and it only remembers lock status (what kind lock am I)
  * and thread id (who owns me)
  */
-public class Main {
+public class Main01 {
     static class MyAction {
         final Object locker;
         MyAction(Object locker){

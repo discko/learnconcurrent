@@ -3,7 +3,7 @@ package space.wudi.learnconcurrent.basicconcurrent.test03;
 /**
  * use join() and interrupt()
  */
-public class Main {
+public class Main03 {
 
     static class MyRunnable implements Runnable{
         private final long time;
