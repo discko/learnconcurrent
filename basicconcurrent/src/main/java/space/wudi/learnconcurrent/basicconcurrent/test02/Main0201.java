@@ -5,7 +5,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * try to use key word volatile to prevent thread cache
  */
-public class Main02 {
+public class Main0201 {
     @SuppressWarnings("all")
     static class MyAction{
         boolean flag1 = true;
