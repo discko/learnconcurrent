@@ -2,9 +2,13 @@ package space.wudi.learnconcurrent.basicconcurrent.test06;
 
 import java.util.concurrent.locks.*;
 
+/**
+ * ReentrantReadWriteLock and its degradation
+ */
 public class Main06 {
 
     private static long startTime = 0;
+    private static int data = 0;
     public static void main(String[] args) {
         startTime= System.currentTimeMillis();
         ReentrantReadWriteLock rrwl = new ReentrantReadWriteLock();
@@ -18,7 +22,7 @@ public class Main06 {
                 Thread.sleep(5000);
             } catch (InterruptedException ignored) {
             }
-            System.out.println("in "+Thread.currentThread().getName() + " time elapsed "+(System.currentTimeMillis() - startTime));
+            System.out.println("read data = "+ data +" in "+Thread.currentThread().getName() + " time elapsed "+(System.currentTimeMillis() - startTime));
             rrwl.readLock().unlock();
         }, "ReadWriteThread").start();
         new Thread(()->{
@@ -27,7 +31,7 @@ public class Main06 {
             } catch (InterruptedException ignored) {
             }
             rrwl.readLock().lock();
-            System.out.println("in "+Thread.currentThread().getName() + " time elapsed "+(System.currentTimeMillis() - startTime));
+            System.out.println("read data = "+ data +" in "+Thread.currentThread().getName() + " time elapsed "+(System.currentTimeMillis() - startTime));
             rrwl.readLock().unlock();
         },"ReadThread1").start();
         new Thread(()->{
@@ -45,12 +49,13 @@ public class Main06 {
             } catch (InterruptedException ignored) {
             }
             rrwl.readLock().lock();
-            System.out.println("in "+Thread.currentThread().getName() + " time elapsed "+(System.currentTimeMillis() - startTime));
+            System.out.println("read data = "+ data +" in "+Thread.currentThread().getName() + " time elapsed "+(System.currentTimeMillis() - startTime));
             rrwl.readLock().unlock();
         },"ReadThread2").start();
     }
 
     private static void modify(){
-        System.out.println("Modified in "+Thread.currentThread().getName() + " time elapsed "+(System.currentTimeMillis() - startTime));
+        data++;
+        System.out.println("Modified data to "+ data +" in "+Thread.currentThread().getName() + " time elapsed "+(System.currentTimeMillis() - startTime));
     }
 }
