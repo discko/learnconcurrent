@@ -26,7 +26,7 @@ public class Main0204 {
         int[] tgt = new int[16];
         int a=0;
         void fun() {
-            System.out.println(Thread.currentThread().getName()+" fun1 loop started");
+            System.out.println(Thread.currentThread().getName()+" fun loop started");
 
             while (flag) {
 //                lock.lock(); lock.unlock();
@@ -42,14 +42,35 @@ public class Main0204 {
 //                stringBuilder.append('a');
 //                stringBuilder.setCharAt(0, 'a');
             }
-            System.out.println(Thread.currentThread().getName()+" fun1 loop stopped");
+            System.out.println(Thread.currentThread().getName()+" fun loop stopped");
+        }
+
+        void funWithTryCatch(){
+            System.out.println(Thread.currentThread().getName()+" funWithTryCatch loop started");
+
+            while (flag) {
+                try{
+                    // do nothing -> cannot stop
+//                    throw new Exception();    // throw a exception -> stopped
+//                    a++;                      // a++ -> cannot stop
+                    list.add(1);                // some
+                }catch(Exception e){
+//                    a++;
+                    list.add(1);
+//                }finally {
+//                    a++;
+//                    list.add(1);
+                }
+            }
+            System.out.println(Thread.currentThread().getName()+" funWithTryCatch loop stopped");
         }
 
     }
 
     public static void main(String[] args) {
         MyAction a = new MyAction();
-        Thread t = new Thread(a::fun, "Thread-1");
+//        Thread t = new Thread(a::fun, "Thread-1");
+        Thread t = new Thread(a::funWithTryCatch, "Thread-1");
         t.start();
         try {
             TimeUnit.MILLISECONDS.sleep(100);
